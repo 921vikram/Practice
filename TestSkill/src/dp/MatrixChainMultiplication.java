@@ -1,0 +1,32 @@
+package dp;
+
+public class MatrixChainMultiplication {
+
+
+  public static void main(String args[]) {
+
+    int[] X = {40, 20, 30, 10, 30, 30, 50,60, 30, 20, 50, 30, 40, 30, 60, 40, 40,10,30,60,10,30};
+    long t1 = System.currentTimeMillis();
+    int i = 0;
+    int j = X.length - 1;
+    int cost = solve(X,1,j);
+    System.out.println("Time taken " + (System.currentTimeMillis() - t1));
+    System.out.println("Minimum Matrix multiplication cost  " + cost);
+    //
+  }
+
+  private static int solve(int[] x, int i, int j) {
+    if (i >= j) {
+      return 0;
+    }
+    int mn = Integer.MAX_VALUE;
+    for(int k=i; k<j;k++) {
+      int tempAns = solve(x,i, k)  + solve(x,k+1, j) + (x[i-1]*x[k]*x[j]);
+      if(tempAns < mn) {
+        mn = tempAns;
+      }
+    }
+    return mn;
+  }
+
+}
