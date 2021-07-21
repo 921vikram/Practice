@@ -1,4 +1,6 @@
-package dp;
+package dp.tree;
+
+import dp.Node;
 
 public class TreeDiameter {
 
