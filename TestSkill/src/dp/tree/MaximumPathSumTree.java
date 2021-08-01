@@ -1,7 +1,5 @@
 package dp.tree;
 
-import dp.Node;
-
 public class MaximumPathSumTree {
 
   public static int res = 0;

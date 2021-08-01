@@ -1,4 +1,6 @@
-package dp;
+package dp.tree;
+
+import dp.tree.Node;
 
 public class MaximumPathSumLeafToLeafTree {
 
