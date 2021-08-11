@@ -28,8 +28,9 @@ public class MaximumPathSumTree {
     }
     int left = treeDiameter(node.getLeft());
     int right = treeDiameter(node.getRight());
-
+    // compute the value till the node we are investigating
     int tmp = left > right ? left + node.getValue() : right + node.getValue();
+    // If temp is more that  means node value is negative and we should not
     tmp = tmp > node.getValue() ? tmp : node.getValue();
     int ans = tmp < left + right + node.getValue() ? left + right + node.getValue() : tmp;
 
