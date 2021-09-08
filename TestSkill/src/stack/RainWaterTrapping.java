@@ -12,7 +12,7 @@ public class RainWaterTrapping {
     int max = -1;
     int[] MaxLeft = new int[s.length];
     int[] MaxRight = new int[s.length];
-
+    // finD LEFT MAXIMUM FOR each index. if value at index is more than the max value then new value will be the maximum left value
     for(int i = 0; i < s.length; i++ ) {
       if(s[i] > max) {
         max = s[i];
@@ -20,6 +20,7 @@ public class RainWaterTrapping {
       MaxLeft[i] = max;
     }
     max = -1;
+    // for right maximum start from right and save maximum value at each index
     for(int i = s.length-1; i >= 0; i-- ) {
       if(s[i] > max) {
         max = s[i];

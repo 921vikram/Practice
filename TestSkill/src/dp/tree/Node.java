@@ -2,8 +2,8 @@ package dp.tree;
 
 public class Node {
 
-  private Node left;
-  private Node right;
+  protected Node left;
+  protected Node right;
   private int value;
 
   public Node(int value) {
