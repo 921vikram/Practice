@@ -121,21 +121,22 @@ public class StatisticsCalculator implements Statistic {
   public float mean(int lastNMinutes) {
     Long currentTime = System.currentTimeMillis();
     Long sampleTime = currentTime - lastNMinutes * 60 * 1000;
-    float sum = 0;
+    float mean = 0;
     int sampleCount = 0;
     synchronized (samples) {
       ListIterator<Sample> iterator = samples.listIterator(samples.size());
       while (iterator.hasPrevious()) {
         Sample sample = iterator.previous();
-        sampleCount++;
         if (sample.getTimestamp() < sampleTime) {
           break;
         } else {
-          sum += sample.getValue();
+          mean = (mean / (sampleCount + 1)) * sampleCount
+                + ((float) sample.getValue()) / (sampleCount + 1);
         }
+        sampleCount++;
       }
     }
-    return sum / sampleCount;
+    return mean;
   }
 
   @Override
