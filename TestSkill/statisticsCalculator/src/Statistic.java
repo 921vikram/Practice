@@ -15,4 +15,5 @@ public interface Statistic {
   int minimum();
   /* Returns the maximal received sample value. */
   int maximum();
+  void printValues();
 }

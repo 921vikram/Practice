@@ -3,88 +3,107 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Statistics calculator keep tracks of Mean and Variations of all the events
+ * received till the time
+ */
 public class StatisticsCalculator implements Statistic {
 
+  /**
+   * Sample class contains the timestamp at which sample is received and the sample value
+   */
   public static class Sample {
     private Long timestamp;
-    private Integer sample;
+    private Integer value;
 
-    public Sample(Long timestamp, int sample) {
+    public Sample(Long timestamp, int value) {
       this.timestamp = timestamp;
-      this.sample = sample;
+      this.value = value;
     }
 
     public Long getTimestamp() {
       return timestamp;
     }
 
-    public void setTimestamp(Long timestamp) {
-      this.timestamp = timestamp;
-    }
-
-    public Integer getSample() {
-      return sample;
-    }
-
-    public void setSample(Integer sample) {
-      this.sample = sample;
+    public Integer getValue() {
+      return value;
     }
   }
 
+  // Stores samples for last Thirty Minutes it is configurable based on memory requirement
   private static List<Sample> samples = Collections.synchronizedList(new ArrayList<>());
-
+  // Stores mean of all the events came till now
   private static float mean = 0;
+  // Stores variance of all the events came till now
   private static float variance = 0;
-  private static float diffSum = 0;
+  // This is requires of variance calculation
+  private static float meanofDiffSum = 0;
+  // Keeps tracks of number of events received
   private static int numOfSamples = 0;
+  // Stores minimum of all the events received till now
   private static int min = Integer.MAX_VALUE;
+  // Stores maximum of all the events received till now
   private static int max = Integer.MIN_VALUE;
-  private static long ONE_HOUR = 1000 * 60 * 60;
+  // Keeping all the events in last 30 minutes this is configurable parameter and can be increased and decreased based on memory requirement
+  private static long THIRTY_MINUTES = 1000 * 60 * 30;
 
   @Override
   public void event(int value) {
-    // Store samples
+    // Capture the timestamp at which sample received
     Long sampleTime = System.currentTimeMillis();
-    synchronized (samples) {
-      samples.add(new Sample(sampleTime, value));
-      Sample sam = samples.get(0);
-      if (sam.getTimestamp() + ONE_HOUR < sampleTime) {
-        samples.remove(0);
+    // If multiple Threads are calling the event method we need to put in Synchronized block to update all the static fields updated serially
+    synchronized (this) {
+      System.out.println("Sample " + numOfSamples + " value " + value);
+      // Removing element from list synchronously so that calculation of mean for last N minutes will not be affected.
+      synchronized (samples) {
+        samples.add(new Sample(sampleTime, value));
+        Sample sam = samples.get(0);
+        if (sam.getTimestamp() + THIRTY_MINUTES < sampleTime) {
+          samples.remove(0);
+        }
       }
-    }
 
-    if (value < min) {
-      min = value;
-    }
-    if (value > max) {
-      max = value;
-    }
-    if (numOfSamples == 0) {
-      mean = value;
-    } else {
-      float newMean = (mean / (numOfSamples + 1)) * numOfSamples + ((float) value) / (numOfSamples + 1);
-      if (newMean >= mean) {
-        float diff = newMean - mean;
-
-        variance = (variance / (numOfSamples + 1)) * numOfSamples + (((float) value - newMean) * ((float) value - newMean) / (numOfSamples + 1))
-          + (diff * diff) / (numOfSamples + 1) * numOfSamples
-          - ((diff) / (numOfSamples + 1)) * numOfSamples * numOfSamples * diffSum;
-
-        diffSum = (diffSum / (numOfSamples + 1)) * numOfSamples - (diff / (numOfSamples + 1)) * numOfSamples
-          + (((float) value - newMean) / (numOfSamples + 1));
-
-      } else if (newMean < mean) {
-        float diff = mean - newMean;
-
-        variance = (variance / (numOfSamples + 1)) * numOfSamples + ((newMean - value) / (numOfSamples + 1)) + (diff * diff) / (numOfSamples + 1) * numOfSamples
-          + ((diff) / (numOfSamples + 1)) * numOfSamples * numOfSamples * diffSum;
-
-        diffSum = (diffSum / (numOfSamples + 1)) * numOfSamples - (diff / (numOfSamples + 1)) * numOfSamples + ((value - newMean) / (numOfSamples + 1));
-
+      if (value < min) {
+        min = value;
       }
-      mean = newMean;
+      if (value > max) {
+        max = value;
+      }
+      if (numOfSamples == 0) {
+        mean = value;
+      } else {
+        // New mean can be calculated from the old mean value. Details formula derivation attached with readme file
+        float newMean = (mean / (numOfSamples + 1)) * numOfSamples + ((float) value) / (numOfSamples + 1);
+        if (newMean > mean) {
+          float diff = newMean - mean;
+          // There is a formula to derive variance from the old variance value and diff Sum value.  Details formula derivation attached with readme file
+          variance = (variance / (numOfSamples + 1)) * numOfSamples
+            + (((float) value - newMean) * ((float) value - newMean) / (numOfSamples + 1))
+            + (diff * diff) / (numOfSamples + 1) * numOfSamples
+            - ((diff) / (numOfSamples + 1)) * 2 * numOfSamples * meanofDiffSum;
+
+          meanofDiffSum = (meanofDiffSum / (numOfSamples + 1)) * numOfSamples
+            - (diff / (numOfSamples + 1)) * numOfSamples
+            + (((float) value - newMean) / (numOfSamples + 1));
+
+        } else if (newMean < mean) {
+          float diff = mean - newMean;
+
+          variance = (variance / (numOfSamples + 1)) * numOfSamples
+            + ((newMean - value) * (newMean - value) / (numOfSamples + 1))
+            + (diff * diff) / (numOfSamples + 1) * numOfSamples
+            + ((diff) / (numOfSamples + 1)) * 2 * numOfSamples * meanofDiffSum;
+
+          meanofDiffSum = (meanofDiffSum / (numOfSamples + 1)) * numOfSamples
+            + (diff / (numOfSamples + 1)) * numOfSamples
+            + (((float) value - newMean) / (numOfSamples + 1));
+
+        }
+        mean = newMean;
+      }
+      numOfSamples++;
+      printValues();
     }
-    numOfSamples++;
   }
 
   @Override
@@ -93,6 +112,9 @@ public class StatisticsCalculator implements Statistic {
   }
 
   @Override
+  /**
+   * We will traverse the list from the end and get all the events came in last N minutes and calculate the mean
+   */
   public float mean(int lastNMinutes) {
     Long currentTime = System.currentTimeMillis();
     Long sampleTime = currentTime - lastNMinutes * 60 * 1000;
@@ -106,7 +128,7 @@ public class StatisticsCalculator implements Statistic {
         if (sample.getTimestamp() < sampleTime) {
           continue;
         } else {
-          sum += sample.getSample();
+          sum += sample.getValue();
         }
       }
 
@@ -129,38 +151,12 @@ public class StatisticsCalculator implements Statistic {
     return max;
   }
 
-  public static void main(String[] args) {
-    Statistic statisticCalculator = new StatisticsCalculator();
-    statisticCalculator.event(3);
-    System.out.println("Mean " + statisticCalculator.mean());
-    System.out.println("Variance " + statisticCalculator.variance());
-    System.out.println("Min " + statisticCalculator.minimum());
-    System.out.println("Max " + statisticCalculator.maximum());
-    System.out.println("Mean Last Minute " + statisticCalculator.mean(1));
-
-    statisticCalculator.event(4);
-    System.out.println("Mean " + statisticCalculator.mean());
-    System.out.println("Variance " + statisticCalculator.variance());
-    System.out.println("Min " + statisticCalculator.minimum());
-    System.out.println("Max " + statisticCalculator.maximum());
-    System.out.println("Mean Last Minute " + statisticCalculator.mean(1));
-
-    statisticCalculator.event(5);
-    System.out.println("Mean " + statisticCalculator.mean());
-    System.out.println("Variance " + statisticCalculator.variance());
-    System.out.println("Min " + statisticCalculator.minimum());
-    System.out.println("Max " + statisticCalculator.maximum());
-    System.out.println("Mean Last Minute " + statisticCalculator.mean(1));
-
-
-    statisticCalculator.event(8);
-    System.out.println("Mean " + statisticCalculator.mean());
-    System.out.println("Variance " + statisticCalculator.variance());
-    System.out.println("Min " + statisticCalculator.minimum());
-    System.out.println("Max " + statisticCalculator.maximum());
-    System.out.println("Mean Last Minute " + statisticCalculator.mean(1));
-
-
+  @Override
+  public void printValues() {
+    System.out.println("Mean " + this.mean());
+    System.out.println("Variance " + this.variance());
+    System.out.println("Min " + this.minimum());
+    System.out.println("Max " + this.maximum());
   }
 
 }
