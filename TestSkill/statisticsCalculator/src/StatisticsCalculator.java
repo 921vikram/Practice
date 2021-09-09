@@ -57,9 +57,12 @@ public class StatisticsCalculator implements Statistic {
       // Removing element from list synchronously so that calculation of mean for last N minutes will not be affected.
       synchronized (samples) {
         samples.add(new Sample(sampleTime, value));
-        Sample sam = samples.get(0);
-        if (sam.getTimestamp() + THIRTY_MINUTES < sampleTime) {
-          samples.remove(0);
+        ListIterator<Sample> itr = samples.listIterator();
+        while (itr.hasNext()) {
+          Sample sample = itr.next();
+          if (sample.getTimestamp() + THIRTY_MINUTES < sampleTime) {
+            itr.remove();
+          }
         }
       }
 

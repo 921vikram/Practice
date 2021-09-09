@@ -1,12 +1,11 @@
-We are calculate mean and variance from the previous mean and variance values
-
-Following formula can be used -
+We can calculate mean and variance from the previous mean and variance values using below formulas.
 
 
 New Mean = (Old Mean * n)/(n+1) + value/(n+1)
 
 
-if NewMean is more than old mean -
+
+1. if NewMean is more than old mean -
 
 New Variance = (old Variance/n+1)*n
                 + (value - new Mean)*(value - new Mean)/n+1
@@ -18,7 +17,7 @@ new Z =  n * old Z / n+1
         + (value - new mean) / n+1
 
 
-if NewMean is less than old mean -
+2. if NewMean is less than old mean -
 
 New Variance = (old Variance/n+1)*n
                 + (value - new Mean)*(value - new Mean)/n+1
@@ -30,5 +29,6 @@ new Z =  n * old Z / n+1
         + (value - new mean) / n+1
 
 
+Note-
 value = new event
-where Z can be calculated by mean of diff sum
+and Z can be calculated by mean of diff sum
