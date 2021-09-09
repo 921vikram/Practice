@@ -126,12 +126,11 @@ public class StatisticsCalculator implements Statistic {
         Sample sample = iterator.previous();
         sampleCount++;
         if (sample.getTimestamp() < sampleTime) {
-          continue;
+          break;
         } else {
           sum += sample.getValue();
         }
       }
-
     }
     return sum / sampleCount;
   }

@@ -7,14 +7,13 @@ public class StatisticsCalculatorDriver {
   public static void main(String[] args) {
     Statistic statisticCalculator = new StatisticsCalculator();
 
-    ExecutorService threadPool = Executors.newFixedThreadPool(1);
-    for (int i = 1; i <= 100; i++) {
-      int finalI = i;
+    ExecutorService threadPool = Executors.newFixedThreadPool(10);
+    for (int i = 1; i <= 1000000; i++) {
       threadPool.execute(new Runnable() {
         public void run() {
-//          Random generator = new Random();
-//          Integer randomNumber = generator.nextInt(10);
-          statisticCalculator.event(finalI);
+          Random generator = new Random();
+          Integer randomNumber = generator.nextInt(10);
+          statisticCalculator.event(randomNumber);
         }
       });
     }
