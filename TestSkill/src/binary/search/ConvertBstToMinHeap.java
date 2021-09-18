@@ -6,7 +6,6 @@ public class ConvertBstToMinHeap {
 
   static Node root;
 
-
   public void bstToSortedArray(Node node, ArrayList<Integer> arr) {
     if(null == node) {
       return;
@@ -53,8 +52,14 @@ public class ConvertBstToMinHeap {
     ArrayList<Integer> arr = new ArrayList<>();
     bst.bstToSortedArray(root, arr);
 
+    // print sorted array
+    for(int i = 0; i< arr.size(); i ++) {
+      System.out.print(arr.get(i));
+    }
+
     bst.sortedArrayToMinHeap(arr, root);
     System.out.println("Finallllllllllllllllllllllll");
+    // pre order traversal of min heap will give minimum element first
     bst.printPreOrderTree(root);
   }
 
@@ -64,8 +69,8 @@ public class ConvertBstToMinHeap {
 
   // output min heap---
   //        1
-  //     2     3
-  //   4   5  6  7
+  //     2     5
+  //   3   4  6  7
 
 
 }

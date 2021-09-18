@@ -2,6 +2,9 @@ package array;
 
 import java.util.HashMap;
 
+/**
+ *
+ */
 public class PickToys {
 
   public static void main(String[] args) {
@@ -35,6 +38,6 @@ public class PickToys {
       }
       j++;
     }
-    System.out.println("maximum sum  " + maxLength);
+    System.out.println("Maximum Toys selected of 3 types :  " + maxLength);
   }
 }

@@ -14,7 +14,7 @@ public class FindElemInInfiniteSortedArray {
         end = end * 2;
         continue;
       }
-      int mid = start+(end-start)/2;
+      int mid = start + (end - start) / 2;
       if (s[mid] == k) {
         System.out.println("Index " + mid);
         break;
