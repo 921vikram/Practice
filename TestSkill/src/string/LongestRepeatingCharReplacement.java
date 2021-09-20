@@ -18,7 +18,7 @@ public class LongestRepeatingCharReplacement {
       }
       res = Math.max(res, endWindow - startWindow + 1);
     }
-    System.out.println("Longest repeating character lenght : " + res);
+    System.out.println("Longest repeating character length : " + res);
 
   }
 

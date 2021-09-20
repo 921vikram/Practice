@@ -1,7 +1,6 @@
 package graph;
 
 import java.util.Iterator;
-import java.util.ListIterator;
 
 public class DFSTraversalOfGraph {
 
@@ -11,7 +10,7 @@ public class DFSTraversalOfGraph {
   // Driver Code
   public static void main(String args[])
   {
-    Graph g = new Graph(4);
+    UnDirectedGraph g = new UnDirectedGraph(4);
 
     g.addEdge(0, 1);
     g.addEdge(0, 2);
@@ -27,12 +26,12 @@ public class DFSTraversalOfGraph {
     DFS(2, g, 4);
   }
 
-  private static void DFS(int v, Graph g, int V) {
+  private static void DFS(int v, UnDirectedGraph g, int V) {
     boolean[] visited = new boolean[V];
     DFSUtil(v, visited, g);
   }
 
-  private static void DFSUtil(int v, boolean[] visited, Graph g) {
+  private static void DFSUtil(int v, boolean[] visited, UnDirectedGraph g) {
     visited[v] = true;
     System.out.println(" "+v+" ");
     Iterator<Integer> itr = g.getAdj()[v].iterator();

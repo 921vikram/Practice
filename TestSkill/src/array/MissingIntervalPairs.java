@@ -10,12 +10,15 @@ import java.util.List;
 /**
  * how many intervals will be dropped
  */
-public class NonOverlappingInterval {
+public class MissingIntervalPairs {
   public static void main(String args[]) {
     List<Pair<Integer, Integer>> pairs = new ArrayList<>();
-    pairs.add(new Pair<>(1,2));
-    pairs.add(new Pair<>(1,2));
-    pairs.add(new Pair<>(1,2));
+    pairs.add(new Pair<>(1,3));
+    pairs.add(new Pair<>(2,4));
+    pairs.add(new Pair<>(3,5));
+    pairs.add(new Pair<>(7,9));
+
+    List<Pair<Integer, Integer>> missingInterval = new ArrayList<>();
 
     Collections.sort(pairs, new Comparator<Pair<Integer, Integer>>() {
       @Override
@@ -23,16 +26,13 @@ public class NonOverlappingInterval {
         return o1.first() - o2.first();
       }
     });
-    int drop = 0;
-    int currentEnd = 0;
+    int previousEnd = 0;
     for(Pair<Integer, Integer> pair : pairs) {
-      if(pair.first() > currentEnd) {
-        currentEnd = pair.second();
-      } else if (pair.first() < currentEnd) {
-        drop++;
+      if(pair.first() > previousEnd && previousEnd > 0) {
+        missingInterval.add(new Pair<>(previousEnd, pair.first()));
       }
+      previousEnd = pair.second();
     }
-
-    System.out.println("Drop : "+drop);
+    missingInterval.stream().forEach(a-> System.out.println(a.first()+" "+a.second()));
   }
 }

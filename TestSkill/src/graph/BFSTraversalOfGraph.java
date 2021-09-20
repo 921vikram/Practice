@@ -11,7 +11,7 @@ public class BFSTraversalOfGraph {
   // Driver Code
   public static void main(String args[])
   {
-    Graph g = new Graph(4);
+    UnDirectedGraph g = new UnDirectedGraph(4);
 
     g.addEdge(0, 1);
     g.addEdge(0, 2);
@@ -28,7 +28,7 @@ public class BFSTraversalOfGraph {
     
   }
 
-  private static void BFS(int element, Graph g, int vertexes) {
+  private static void BFS(int element, UnDirectedGraph g, int vertexes) {
     boolean[] visited = new boolean[vertexes];
 
     // queue for BFS

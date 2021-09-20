@@ -2,9 +2,17 @@ package graph;
 
 import java.util.LinkedList;
 
-public class Graph {
+public class UnDirectedGraph {
   // No. of vertices
   private int V;
+
+  public int getV() {
+    return V;
+  }
+
+  public void setV(int v) {
+    V = v;
+  }
 
   // Array  of lists for
   // Adjacency List Representation
@@ -16,7 +24,7 @@ public class Graph {
 
   // Constructor
   @SuppressWarnings("unchecked")
-  public Graph(int v)
+  public UnDirectedGraph(int v)
   {
     this.V = v;
     this.adj = new LinkedList[v];
@@ -28,6 +36,7 @@ public class Graph {
   void addEdge(int v, int w)
   {
     adj[v].add(w); // Add w to v's list.
+    adj[w].add(v);
   }
 
 }
