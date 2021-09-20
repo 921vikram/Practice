@@ -1,6 +1,4 @@
-package String;
-
-import java.util.StringJoiner;
+package string;
 
 public class AddStrings {
 
