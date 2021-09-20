@@ -1,8 +1,5 @@
 package linklist;
 
-import dp.tree.Node;
-import dp.tree.TreeDiameter;
-
 public class AddTwoIntegers {
   
   public static void main(String args[]) {

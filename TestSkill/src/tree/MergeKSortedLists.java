@@ -1,4 +1,4 @@
-package dp.tree;
+package tree;
 
 public class MergeKSortedLists {
 

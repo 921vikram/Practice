@@ -1,8 +1,6 @@
-package dp.tree;
+package tree;
 
-import dp.tree.Node;
-
-public class MaximumPathSumLeafToLeafTree {
+public class MaximumPathSumTree {
 
   public static int res = 0;
 
@@ -30,11 +28,10 @@ public class MaximumPathSumLeafToLeafTree {
     }
     int left = treeDiameter(node.getLeft());
     int right = treeDiameter(node.getRight());
-
+    // compute the value till the node we are investigating
     int tmp = left > right ? left + node.getValue() : right + node.getValue();
-    if (node.getLeft() == null && node.getRight() == null) {
-      tmp = tmp > node.getValue() ? tmp : node.getValue();
-    }
+    // If temp is more that  means node value is negative and we should not
+    tmp = tmp > node.getValue() ? tmp : node.getValue();
     int ans = tmp < left + right + node.getValue() ? left + right + node.getValue() : tmp;
 
     res = res < ans ? ans : res;

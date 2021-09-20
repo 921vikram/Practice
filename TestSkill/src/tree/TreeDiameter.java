@@ -1,6 +1,6 @@
-package dp.tree;
+package tree;
 
-public class MaximumPathSumTree {
+public class TreeDiameter {
 
   public static int res = 0;
 
@@ -10,7 +10,7 @@ public class MaximumPathSumTree {
     node.setLeft(new Node(2));
     node.setRight(new Node(3));
 
-    Node n2 = new Node(-50);
+    Node n2 = new Node(5);
     n2.setLeft(new Node(6));
     n2.setRight(new Node(7));
 
@@ -19,7 +19,7 @@ public class MaximumPathSumTree {
     n1.setRight(n2);
     res = 0;
     treeDiameter(n1);
-    System.out.println("Mximum path sum for Tree " + res);
+    System.out.println("Diameter of Tree " + res);
   }
 
   public static int treeDiameter(Node node) {
@@ -28,11 +28,9 @@ public class MaximumPathSumTree {
     }
     int left = treeDiameter(node.getLeft());
     int right = treeDiameter(node.getRight());
-    // compute the value till the node we are investigating
-    int tmp = left > right ? left + node.getValue() : right + node.getValue();
-    // If temp is more that  means node value is negative and we should not
-    tmp = tmp > node.getValue() ? tmp : node.getValue();
-    int ans = tmp < left + right + node.getValue() ? left + right + node.getValue() : tmp;
+
+    int tmp = left > right ? left + 1 : right + 1;
+    int ans = tmp < left + right + 1 ? left + right + 1 : tmp;
 
     res = res < ans ? ans : res;
     return tmp;
