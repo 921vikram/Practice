@@ -1,9 +1,5 @@
 package stack;
 
-import java.util.Collections;
-import java.util.Stack;
-import java.util.Vector;
-
 public class RainWaterTrapping {
 
   public static void main(String args[]) {
@@ -36,6 +32,5 @@ public class RainWaterTrapping {
     System.out.println("Total Water Collected "+ totalWater);
 
   }
-
 
 }

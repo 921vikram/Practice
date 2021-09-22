@@ -5,9 +5,6 @@ import java.util.LinkedList;
 
 public class BFSTraversalOfGraph {
 
-
-
-
   // Driver Code
   public static void main(String args[])
   {

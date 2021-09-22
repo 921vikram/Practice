@@ -2,21 +2,19 @@ package dp;
 
 public class LongestRepeatingSubSequence {
 
-
+  /**
+   * Run LCS on 2 same String anc check for i ! j means at same index if same character is there it should not pick
+   * @param args
+   */
   public static void main(String args[]) {
 
     char[] X = {'a', 'a', 'b', 'e', 'b', 'c', 'd', 'd'};
-    char[] Y = new char[X.length];
     long t1 = System.currentTimeMillis();
     int n = X.length;
-    for (int i = X.length - 1; i >= 0; i--) {
-      Y[X.length - i - 1] = X[i];
-    }
-    int m = Y.length;
-    int[][] t = new int[n + 1][m + 1];
+    int[][] t = new int[n + 1][n + 1];
 
     for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
+      for (int j = 0; j < n; j++) {
         if (i == 0 || j == 0) {
           t[i][j] = 0;
         }
@@ -24,8 +22,8 @@ public class LongestRepeatingSubSequence {
     }
 
     for (int i = 1; i < n+1; i++) {
-      for (int j = 1; j < m+1; j++) {
-        if (X[i - 1] == Y[j - 1] && i != j) {
+      for (int j = 1; j < n+1; j++) {
+        if (X[i - 1] == X[j - 1] && i != j) {
           t[i][j] = 1 + t[i - 1][j - 1];
         } else {
           int tmp1 = t[i][j - 1];
@@ -35,7 +33,7 @@ public class LongestRepeatingSubSequence {
       }
     }
     System.out.println("Time taken " + (System.currentTimeMillis() - t1));
-    System.out.println("LCS length  " + t[n][m]);
+    System.out.println("LCS length  " + t[n][n]);
   }
 
 
