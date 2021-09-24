@@ -1,5 +1,10 @@
 package binary.search;
 
+/**
+ * for calculating previous we need to divide my length  of the of the string
+ * pre = (mid -1 + length) % length
+ * pre = (mid + 1 + length) % length
+ */
 public class RotatedSortedArray {
 
   public static void main(String args[]) {
