@@ -1,4 +1,4 @@
-package binary.search;
+package binary_search;
 
 /**
  * for calculating previous we need to divide my length  of the of the string

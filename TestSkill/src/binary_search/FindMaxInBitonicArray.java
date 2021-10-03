@@ -1,4 +1,4 @@
-package binary.search;
+package binary_search;
 
 /**
  * Bitonic array will be increasing sorted from start and increasing sorted from end

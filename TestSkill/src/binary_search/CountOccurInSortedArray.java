@@ -1,4 +1,4 @@
-package binary.search;
+package binary_search;
 
 public class CountOccurInSortedArray {
 
@@ -21,6 +21,8 @@ public class CountOccurInSortedArray {
         end = mid - 1;
       }
     }
+    System.out.println("First Occurrence index : " + fisrtOccurrence);
+
 
     int lastOccurrence = -1;
     start = 0;

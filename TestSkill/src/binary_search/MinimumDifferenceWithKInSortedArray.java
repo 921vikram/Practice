@@ -1,4 +1,4 @@
-package binary.search;
+package binary_search;
 
 /**
  * Fist Search for an element in the array and

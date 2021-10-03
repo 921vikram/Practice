@@ -1,7 +1,6 @@
 package array;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class GroupAnagrams {
   private static class Word {
@@ -42,10 +41,22 @@ public class GroupAnagrams {
         }
       });
 
+      List<List<String>> output = new ArrayList<>();
+      String word = duplicateArray.arr[0].str;
+      List<String> strs = new ArrayList<>();
       for (int i = 0; i < array.length; i++) {
+        if(word.equals(duplicateArray.arr[i].str)) {
+          strs.add(array[duplicateArray.arr[i].index]);
+        } else {
+          word = duplicateArray.arr[i].str;
+          output.add(strs);
+          strs = new ArrayList<>();
+          strs.add(array[duplicateArray.arr[i].index]);
+        }
         System.out.println(" " + array[duplicateArray.arr[i].index]);
       }
-
+      output.add(strs);
+      System.out.println();
     }
 
     // Driver program to test above functions
@@ -53,6 +64,7 @@ public class GroupAnagrams {
       String wordArr[] = {"cat", "dog", "tac", "god", "act"};
       int size = wordArr.length;
       printGroupOfAnagram(wordArr, size);
+      System.out.println();
     }
 
   }
