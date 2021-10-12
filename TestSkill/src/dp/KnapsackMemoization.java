@@ -4,13 +4,14 @@ import java.util.Arrays;
 
 public class KnapsackMemoization {
 
-  private static int[][] t = new int[5][11];
+  private static int[][] t;
 
   public static void main(String args[]) {
     Arrays.stream(t).forEach(a -> Arrays.fill(a, -1));
     int[] wt = {1, 3, 4, 5};
     int[] value = {1, 4, 5, 7};
     int W = 10;
+    int[][] t = new int[wt.length+1][W+1];
     int res = knapsack(wt, value, W, wt.length);
     System.out.println("knapsack " + res);
   }
