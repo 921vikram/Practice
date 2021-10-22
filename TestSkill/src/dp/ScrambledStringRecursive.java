@@ -27,6 +27,9 @@ public class ScrambledStringRecursive {
       return true;
     }
     int n= a.length();
+    /**
+     * There are 2 choices if
+     */
     for(int i=1; i <a.length(); i++) {
       if((solve(a.substring(0, i), b.substring(n-i, n)) && solve(a.substring(i, n),b.substring(0, n-i)))
          || (solve(a.substring(0, i), b.substring(0, i)) && solve(a.substring(i, n),b.substring(i, n)))) {

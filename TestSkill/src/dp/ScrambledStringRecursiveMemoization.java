@@ -3,6 +3,10 @@ package dp;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Divide first string in 2  1st--- 0 to i  and second  n-i length
+ * so for second string choose length of 0 to n-i for the first part and other part will be  n-i to n
+ */
 public class ScrambledStringRecursiveMemoization {
 
 

@@ -26,15 +26,13 @@ public class LCSMemoization {
     }
     if(X[n-1] == Y[m-1]) {
       t[n-1][m-1] = LCS(X,Y,n-1, m-1);
-      t[n][m] = 1+ t[n-1][m-1];
-      return t[n][m];
+      return t[n][m] = 1+ t[n-1][m-1];
     } else {
       int tmp1 = LCS(X, Y, n-1, m);
       t[n-1][m] = tmp1;
       int tmp2 = LCS(X, Y, n, m-1);
       t[n][m-1] = tmp2;
-      t[n][m] = (tmp1 > tmp2 ? tmp1 : tmp2);
-      return t[n][m];
+      return t[n][m] =  Math.max(tmp1, tmp2);
     }
   }
 

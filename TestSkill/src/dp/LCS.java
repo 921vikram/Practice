@@ -1,5 +1,14 @@
 package dp;
 
+/**
+ * Longest common sub sequence
+ * start with comparing the last character first then if both matched we will add 1 + call the same method with n-1 and m-1
+ * if not matched we have choice to choose either last of n or m so there will be 2 choices
+ * tmp1 = LCS(x,y,n,m-1)
+ * tmp2 = LCS(x,y,n-1,m)
+ * return Math.max(tmp1,tmp2)
+ *
+ */
 public class LCS {
 
 
@@ -21,7 +30,7 @@ public class LCS {
     } else {
       int tmp1 = LCS(X, Y, n-1, m);
       int tmp2 = LCS(X, Y, n, m-1);
-      return (tmp1 > tmp2 ? tmp1 : tmp2);
+      return Math.max(tmp1, tmp2);
     }
   }
 

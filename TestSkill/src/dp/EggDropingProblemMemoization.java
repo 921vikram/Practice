@@ -44,7 +44,7 @@ public class EggDropingProblemMemoization {
         temp2 = t[f-i][e];
       }
       int temp = 1 + Math.max(temp1, temp2);
-      mn = temp < mn ? temp : mn;
+      mn = Math.min(temp, mn);
     }
     return t[f][e] = mn;
   }

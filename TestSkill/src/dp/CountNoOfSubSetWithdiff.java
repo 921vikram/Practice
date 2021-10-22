@@ -48,6 +48,6 @@ public class CountNoOfSubSetWithdiff {
     }
 
 
-    System.out.println("No of ub sets with diff 1  is "+t[n][W]);
+    System.out.println("No of sub sets with diff 1  is "+t[n][W]);
   }
 }
