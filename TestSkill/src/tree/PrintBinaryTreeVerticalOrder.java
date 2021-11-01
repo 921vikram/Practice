@@ -5,6 +5,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Print the tree nodes with comes in a single vertical line
+ *               1
+ *          2         3
+ *       4      5/6       7
+ *                    8      9
+ */
 public class PrintBinaryTreeVerticalOrder {
 
   public static void main(String args[]) {
@@ -54,7 +61,9 @@ public class PrintBinaryTreeVerticalOrder {
     if(hd > max) {
       max = hd;
     }
-
+    /**
+     *  HD will capture the left and right movement. Left movement means -1 and right movement means +1
+     **/
     map.computeIfAbsent(hd, k -> new ArrayList<Integer>()).add(root.getValue());
 
     findHorizontalDistance(root.left, min, max, hd -1 , map);

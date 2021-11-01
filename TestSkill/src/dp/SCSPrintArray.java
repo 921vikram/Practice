@@ -21,8 +21,8 @@ public class SCSPrintArray {
         }
       }
     }
-    for (int i = 1; i < n+1; i++) {
-      for (int j = 1; j < m+1; j++) {
+    for (int i = 1; i < n + 1; i++) {
+      for (int j = 1; j < m + 1; j++) {
         if (X[i - 1] == Y[j - 1]) {
           t[i][j] = 1 + t[i - 1][j - 1];
         } else {
@@ -33,10 +33,10 @@ public class SCSPrintArray {
       }
     }
     System.out.println("Time taken " + (System.currentTimeMillis() - t1));
-    int i=n;
-    int j=m;
+    int i = n;
+    int j = m;
     String lcs = "";
-    while (i >0 && j > 0) {
+    while (i > 0 && j > 0) {
       if (X[i - 1] == Y[j - 1]) {
         lcs = lcs + X[i - 1];
         i--;

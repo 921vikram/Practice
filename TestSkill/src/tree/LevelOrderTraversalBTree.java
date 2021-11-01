@@ -2,6 +2,7 @@ package tree;
 
 public class LevelOrderTraversalBTree {
 
+  private static boolean left = true;
 
   /* function to print level order traversal of tree*/
   static void printLevelOrder(Node root)
@@ -9,8 +10,9 @@ public class LevelOrderTraversalBTree {
     int h = height(root);
     int i;
     for (i=1; i<=h; i++) {
-      System.out.print("Level "+i+" : ");
+      //System.out.print("Level "+i+" : ");
       printCurrentLevel(root, i);
+      System.out.println();
     }
   }
 
@@ -19,7 +21,7 @@ public class LevelOrderTraversalBTree {
   {
     if (root == null)
       return;
-    if (level == 1)
+    if (level == 1 && left)
       System.out.print(root.getValue() + " ");
     else if (level > 1)
     {
@@ -55,8 +57,26 @@ public class LevelOrderTraversalBTree {
     tree.left.left= new Node(4);
     tree.left.right= new Node(5);
 
+    tree.left.right.left= new Node(6);
+    tree.left.left.right= new Node(11);
+    tree.left.left.right.right= new Node(7);
+
+    tree.left.left.right.right.left= new Node(8);
+    tree.left.left.right.right.right= new Node(9);
+
+    printPreOrder(tree);
+
     System.out.println("Level order traversal of binary tree is ");
     printLevelOrder(tree);
+  }
+
+  private static void printPreOrder(Node tree) {
+    if(null == tree) {
+      return;
+    }
+    System.out.print(tree.getValue()+" ");
+    printPreOrder(tree.left);
+    printPreOrder(tree.right);
   }
 
 }

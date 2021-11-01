@@ -45,6 +45,7 @@ public class CombinationalSum {
     Set<Integer> tmpSet = new HashSet<>(arr);
     arr.clear();
     arr.addAll(tmpSet);
+    //Collections.reverse(tmpArray);
     Collections.sort(arr);
     findCombinations(combinationalSums, arr, 0, sum, tmpArray);
     return combinationalSums;

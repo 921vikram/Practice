@@ -3,7 +3,7 @@ package dp;
 public class LongestRepeatingSubSequence {
 
   /**
-   * Run LCS on 2 same String anc check for i ! j means at same index if same character is there it should not pick
+   * Run LCS on 2 same String and check for i ! j means at same index if same character is there it should not pick
    * @param args
    */
   public static void main(String args[]) {

@@ -34,7 +34,10 @@ public class PrintRightViewOfBinaryTree {
       System.out.println(root.getValue());
       maxLevel.maxLevel = level;
     }
-
+    /**
+     * For Right view we will always choose right for a root element and increase a level so that
+     * for every new level right of right element will be selected always
+     */
     printRightView(root.right, level+1, maxLevel);
 
     printRightView(root.left, level+1, maxLevel);

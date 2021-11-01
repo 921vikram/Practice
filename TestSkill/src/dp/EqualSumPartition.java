@@ -1,17 +1,30 @@
 package dp;
 
+/**
+ * Is current array can be divided in to 2 equal partitions
+ *
+ */
 public class EqualSumPartition {
 
 
   public static void main(String args[]) {
     int[] wt = {1, 5, 11, 5};
     int sum = 0;
+    /**
+     * Calculate the sum of the all the elements
+      */
     for(int i =0; i< wt.length; i++) {
       sum = sum + wt[i];
     }
+    /**
+     * If sum is not divided by 2 means 2 equal partition not possible
+     */
     if(sum %2 != 0) {
       System.out.println("No partition");
     }
+    /**
+     * Find the substring with sum as sum/2. if found other half will also be possible
+     */
     int W = sum /2;
     int n = wt.length;
     boolean[][] t = new boolean[n+1][W+1];

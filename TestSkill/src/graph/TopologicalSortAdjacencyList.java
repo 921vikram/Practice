@@ -37,7 +37,11 @@ public class TopologicalSortAdjacencyList {
     List<Edge> edges = graph.get(at);
 
     if (edges != null)
-      for (Edge edge : edges) if (!visited[edge.to]) i = dfs(i, edge.to, visited, ordering, graph);
+      for (Edge edge : edges) {
+        if (!visited[edge.to]) {
+          i = dfs(i, edge.to, visited, ordering, graph);
+        }
+      }
 
     ordering[i] = at;
     return i - 1;
@@ -86,8 +90,12 @@ public class TopologicalSortAdjacencyList {
           for (Edge edge : adjacentEdges) {
 
             int newDist = dist[nodeIndex] + edge.weight;
-            if (dist[edge.to] == null) dist[edge.to] = newDist;
-            else dist[edge.to] = Math.min(dist[edge.to], newDist);
+            if (dist[edge.to] == null) {
+              dist[edge.to] = newDist;
+            }
+            else {
+              dist[edge.to] = Math.min(dist[edge.to], newDist);
+            }
           }
         }
       }

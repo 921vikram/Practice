@@ -55,8 +55,8 @@ public class SubTreeOfBinaryTree {
       return;
     }
     arr[i.i++] = t.getStrValue();
-    inOrderTraversalOfTree(t.left, arr, i);
-    inOrderTraversalOfTree(t.right, arr, i);
+    preOrderTraversalOfTree(t.left, arr, i);
+    preOrderTraversalOfTree(t.right, arr, i);
   }
 
   private boolean isSubtree(Node t, Node s) {

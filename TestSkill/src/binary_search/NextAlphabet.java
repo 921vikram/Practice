@@ -5,7 +5,7 @@ public class NextAlphabet {
   public static void main(String args[]) {
 
     char[] s = new char[]{'a','b', 'd', 'f', 'g', 'h'};
-     char ch = 'a';
+    char ch = 'a';
     int start = 0;
     int end = s.length-1;
     char res = '#';

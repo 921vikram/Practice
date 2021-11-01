@@ -2,7 +2,7 @@ package array;
 
 /**
  * Find Maximum sum of the sub array size K
- * We can sum all the elements of sub array K and then move tge window by removing the element from I and add from the J side
+ * We can sum all the elements of sub array K and then move the window by removing the element from I and add from the J side
  */
 public class MaximumSumSubArrayOfSizeK {
 

@@ -4,8 +4,8 @@ public class RodCuttingTopDown {
 
 
   public static void main(String args[]) {
-    int[] length = {1, 2, 3, 4, 5,6,7,8};
-    int[] value =  {1, 5, 8, 9,10,17,17,20};
+    int[] length = {1, 2, 3, 4, 5, 6, 7, 8};
+    int[] value = {1, 5, 8, 9, 10, 17, 17, 20};
     int W = 8;
     int n = length.length;
     int[][] t = new int[n + 1][W + 1];
@@ -23,7 +23,7 @@ public class RodCuttingTopDown {
         if (length[i - 1] <= j) {
           int tmp1 = value[i - 1] + t[i][j - length[i - 1]];
           int tmp2 = t[i - 1][j];
-          t[i][j] = tmp1 > tmp2 ? tmp1 : tmp2;
+          t[i][j] = Math.max(tmp1, tmp2);
         } else {
           t[i][j] = t[i - 1][j];
         }
