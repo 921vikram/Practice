@@ -42,7 +42,7 @@ public class ShortestPath {
       // iteration.
       int u = minDistance(dist, sptSet);
 
-      // Mark the picked vertex as processed
+      // Mark the picked vertex as processed ̰
       sptSet[u] = true;
 
       // Update dist value of the adjacent vertices of the

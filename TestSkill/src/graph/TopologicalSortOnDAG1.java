@@ -12,8 +12,6 @@ public class TopologicalSortOnDAG1 {
     public List<List<Integer>> adjList;
     public int size;
 
-
-
     public DirectedGraph(int cap) {
       this.size = cap;
       this.adjList = new ArrayList<>();
@@ -42,11 +40,7 @@ public class TopologicalSortOnDAG1 {
         findPath(c,dg,visited,stack);
       }
     }
-
-
   }
-
-
 
   public static void main(String args[]) {
 

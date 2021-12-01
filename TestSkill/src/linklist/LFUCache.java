@@ -3,6 +3,9 @@ package linklist;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+/**
+ * Least Frequently used we can use min heap to store the
+ */
 public class LFUCache {
 
   private static class Cache { // a class to remember frequency and recentness

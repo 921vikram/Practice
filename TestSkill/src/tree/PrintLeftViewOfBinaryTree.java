@@ -1,6 +1,6 @@
 package tree;
 
-public class PrintRightViewOfBinaryTree {
+public class PrintLeftViewOfBinaryTree {
 //          1
 //        2     3
 //      4   5  6   7
@@ -17,7 +17,7 @@ public class PrintRightViewOfBinaryTree {
     tree.right.left.right = new Node(8);
 
     MaxLevel maxLevel = new MaxLevel();
-    printRightView(tree, 1, maxLevel);
+    printLeftView(tree, 1, maxLevel);
 
   }
 
@@ -28,7 +28,7 @@ public class PrintRightViewOfBinaryTree {
     int maxLevel;
   }
 
-  private static void printRightView(Node root, int level, MaxLevel maxLevel) {
+  private static void printLeftView(Node root, int level, MaxLevel maxLevel) {
     if(root == null) {
       return;
     }
@@ -41,9 +41,8 @@ public class PrintRightViewOfBinaryTree {
      * For Right view we will always choose right for a root element and increase a level so that
      * for every new level right of right element will be selected always
      */
-    printRightView(root.right, level+1, maxLevel);
-
-    printRightView(root.left, level+1, maxLevel);
+    printLeftView(root.left, level+1, maxLevel);
+    printLeftView(root.right, level+1, maxLevel);
   }
 
 

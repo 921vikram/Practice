@@ -43,9 +43,9 @@ public class CourseSchedule {
     // Mark all the vertices as not visited
     boolean visited[] = new boolean[g.getVertices()];
     boolean scale[] = new boolean[g.getVertices()];
-    for (int i = 0; i < g.getVertices(); i++)
+    for (int i = 0; i < g.getVertices(); i++) {
       visited[i] = false;
-
+    }
     // Call the recursive helper
     // function to store
     // Topological Sort starting

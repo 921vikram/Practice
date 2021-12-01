@@ -2,7 +2,7 @@ package javaTest;
 
 public class DeadLock {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
     Object bowl = new Object();
     Object spoon = new Object();
@@ -39,6 +39,9 @@ public class DeadLock {
 
     thread1.start();
     thread2.start();
+
+    thread1.join();
+    thread2.join();
 
   }
 

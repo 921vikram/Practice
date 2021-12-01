@@ -39,24 +39,24 @@ public class SubTreeOfBinaryTree {
     }
   }
 
-  private static void inOrderTraversalOfTree(Node t, char[] arr, Passing i) {
+  private static void inOrderTraversalOfTree(Node t, char[] arr, Passing passing) {
     if(null == t) {
-      arr[i.i++] = '$';
+      arr[passing.i++] = '$';
       return;
     }
-    inOrderTraversalOfTree(t.left, arr, i);
-    arr[i.i++] = t.getStrValue();
-    inOrderTraversalOfTree(t.right, arr, i);
+    inOrderTraversalOfTree(t.left, arr, passing);
+    arr[passing.i++] = t.getStrValue();
+    inOrderTraversalOfTree(t.right, arr, passing);
   }
 
-  private static void preOrderTraversalOfTree(Node t, char[] arr, Passing i) {
+  private static void preOrderTraversalOfTree(Node t, char[] arr, Passing passing) {
     if(null == t) {
-      arr[i.i++] = '$';
+      arr[passing.i++] = '$';
       return;
     }
-    arr[i.i++] = t.getStrValue();
-    preOrderTraversalOfTree(t.left, arr, i);
-    preOrderTraversalOfTree(t.right, arr, i);
+    arr[passing.i++] = t.getStrValue();
+    preOrderTraversalOfTree(t.left, arr, passing);
+    preOrderTraversalOfTree(t.right, arr, passing);
   }
 
   private boolean isSubtree(Node t, Node s) {
@@ -64,22 +64,27 @@ public class SubTreeOfBinaryTree {
     Passing p = new Passing();
     inOrderTraversalOfTree(t, inOrderT, p);
     String s1 = String.valueOf(Arrays.copyOfRange(inOrderT, 0 , p.i));
+    System.out.println(s1);
 
     char[] preOrderT = new char[1000];
     Passing p1 = new Passing();
     preOrderTraversalOfTree(t, preOrderT, p1);
     String s2 = String.valueOf(Arrays.copyOfRange(preOrderT, 0 , p1.i));
+    System.out.println(s2);
 
     char[] inOrderS = new char[1000];
     Passing ps = new Passing();
     inOrderTraversalOfTree(s, inOrderS, ps);
     String s3 = String.valueOf(Arrays.copyOfRange(inOrderS, 0 , ps.i));
+    System.out.println(s3);
 
 
     char[] preOrderS = new char[1000];
     Passing ps1 = new Passing();
     preOrderTraversalOfTree(s, preOrderS, ps1);
     String s4 = String.valueOf(Arrays.copyOfRange(preOrderS, 0 , ps1.i));
+    System.out.println(s4);
+
 
     // Compare pre order of T & S
     if(s1.contains(s3) && s2.contains(s4)) {

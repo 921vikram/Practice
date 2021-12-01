@@ -4,8 +4,8 @@ public class Node {
 
   protected Node left;
   protected Node right;
-  private int value;
-  private char strValue;
+  public int value;
+  public char strValue;
 
   protected Node next;
 

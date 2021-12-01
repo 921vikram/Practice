@@ -4,7 +4,7 @@ public class AddTwoIntegers {
   
   public static void main(String args[]) {
 
-  ListNode n = new ListNode(4);
+    ListNode n = new ListNode(4);
     n.setNext(new ListNode(6));
     ListNode m = new ListNode(2);
     m.setNext(n);

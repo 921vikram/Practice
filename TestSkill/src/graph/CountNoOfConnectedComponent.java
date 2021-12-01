@@ -96,8 +96,7 @@ public class CountNoOfConnectedComponent {
     }
 
     // Print number of components
-    System.out.println("Number of cc component: "
-      + ccCount);
+    System.out.println("Number of cc component: " + ccCount);
   }
 
 

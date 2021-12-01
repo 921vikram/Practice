@@ -3,8 +3,8 @@ package javaTest;
 import java.util.LinkedList;
 
 public class ThreadExample {
-  public static void main(String[] args)
-    throws InterruptedException
+
+  public static void main(String[] args) throws InterruptedException
   {
     // Object of a class that has both produce()
     // and consume() methods

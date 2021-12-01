@@ -43,7 +43,6 @@ public class CountPossibleDecoding {
   public static void main(String[] args)
   {
     char digits[] = { '1', '2', '3', '4' };
-    System.out.printf("Count is %d",
-      countWays(digits));
+    System.out.printf("Count is "+ countWays(digits));
   }
 }

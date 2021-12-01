@@ -9,7 +9,8 @@ public class CenterOfUndirectedTree {
   // Create an empty tree as a adjacency list.
   public static List<List<Integer>> createEmptyTree(int n) {
     List<List<Integer>> tree = new ArrayList<>(n);
-    for (int i = 0; i < n; i++) tree.add(new LinkedList<>());
+    for (int i = 0; i < n; i++)
+      tree.add(new LinkedList<>());
     return tree;
   }
 

@@ -16,10 +16,20 @@ public class IsBST {
     n1.setLeft(node);
     n1.setRight(n2);
 
+    printTree(n1);
 
     boolean res = isBST(n1);
 
     System.out.println("Is Binary Search Tree :  " + res);
+  }
+
+  private static void printTree(Node n1) {
+    if(null == n1) {
+      return;
+    }
+    System.out.print(n1.getValue()+" ");
+    printTree(n1.left);
+    printTree(n1.right);
   }
 
   private static boolean isBST(Node root) {
@@ -29,7 +39,6 @@ public class IsBST {
     if(root.getRight() == null || root.getLeft() == null) {
       return true;
     }
-
 
     if(root.getValue() < root.getLeft().getValue()) {
       return false;

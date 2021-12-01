@@ -46,6 +46,6 @@ public class Java8_Stream {
     int even =
       number.stream().filter(x->x%2==0).reduce(0,(ans,i)-> ans+i);
 
-    System.out.println(even);
+    System.out.println("reduce even "+even);
   }
 }

@@ -11,6 +11,7 @@ public class java10 {
     var val = "test";
     var list = new ArrayList<String>();
     list.add("test");
+    list.add("test2");
 
     System.out.println("items "+item+" val "+ val+ " list "+list);
 

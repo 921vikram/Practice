@@ -27,7 +27,7 @@ public class CallableFutureTest {
     for (int i = 0; i < 5; i++)
     {
       // As it implements Future, we can call get()
-      System.out.println(randomNumberTasks[i].get());
+      System.out.println("print output "+randomNumberTasks[i].get());
 
       // This method blocks till the result is obtained
       // The get method can throw checked exceptions

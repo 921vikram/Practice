@@ -9,7 +9,7 @@ public class DungeonProblem {
   static int cols = 7;
 
   public static void main(String[] args) {
-    dungeon(rows, cols);
+    System.out.print("Count "+dungeon(rows, cols));
   }
 
   private static int dungeon(int row, int column) {

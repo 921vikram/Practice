@@ -2,7 +2,7 @@ package graph;
 
 import java.util.Iterator;
 
-public class CheckUnDirectedGrapthIsTree {
+public class CheckUnDirectedGraphIsTree {
 
   private static boolean isValidTree(UnDirectedGraph graph)
   {

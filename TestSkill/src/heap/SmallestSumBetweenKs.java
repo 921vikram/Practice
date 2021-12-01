@@ -10,7 +10,7 @@ public class SmallestSumBetweenKs {
     int[] s = new int[]{1,3,12,5,15,11, 20};
     int k1 = 3;
     int k2 = 6;
-    // Min heap
+    // Max heap
     PriorityQueue<Integer> minHeap = new PriorityQueue(Comparator.reverseOrder());
 
     for(int i = 0; i < s.length; i++ ) {

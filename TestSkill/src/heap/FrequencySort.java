@@ -36,9 +36,9 @@ public class FrequencySort {
 
     for(Map.Entry<Integer, Integer> entry : map.entrySet()) {
       minHeap.add(new Pair<>(entry.getValue(), entry.getKey()));
-      if(minHeap.size() > k) {
-        minHeap.poll();
-      }
+//      if(minHeap.size() > k) {
+//        minHeap.poll();
+//      }
     }
 
     while (minHeap.size() > 0 ) {

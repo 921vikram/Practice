@@ -27,7 +27,7 @@ public class LCSTopDown {
         } else {
           int tmp1 = t[i][j - 1];
           int tmp2 = t[i - 1][j];
-          t[i][j] = (tmp1 > tmp2 ? tmp1 : tmp2);
+          t[i][j] = Math.max(tmp1, tmp2);
         }
       }
     }

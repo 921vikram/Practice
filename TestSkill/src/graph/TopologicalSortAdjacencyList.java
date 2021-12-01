@@ -62,7 +62,8 @@ public class TopologicalSortAdjacencyList {
 
     int i = numNodes - 1;
     for (int at = 0; at < numNodes; at++)
-      if (!visited[at]) i = dfs(i, at, visited, ordering, graph);
+      if (!visited[at])
+        i = dfs(i, at, visited, ordering, graph);
 
     return ordering;
   }

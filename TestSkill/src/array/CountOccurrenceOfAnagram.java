@@ -18,10 +18,9 @@ public class CountOccurrenceOfAnagram {
     HashMap<Character, Integer> mapCount = new HashMap<Character, Integer>();
     // First capture count of all the characters of the anagram string  and put in the map
     for (char c : ana) {
-      Integer count = mapCount.get(c);
-      if (null == count) {
-        mapCount.put(c, 1);
-      } else {
+      Integer value = mapCount.putIfAbsent(c, 1);
+      if (null != value) {
+        Integer count = mapCount.get(c);
         mapCount.put(c, count + 1);
       }
     }
@@ -36,7 +35,8 @@ public class CountOccurrenceOfAnagram {
           tmpCount--;
         }
       }
-      // Once we reach the length of the smaller string we can fix the window as in case of anagram order of character can change but length will be same
+      // Once we reach the length of the smaller string we can fix the window as in case of anagram order of character can change but length will
+      // be same
       // once we reach the length we can move the window but increasing i and add the character in the map as j will remove.
       if (j - i + 1 == k) {
         // if tmpcount is 0 that means we have got all the characters of smaller string in bigger string consecutively so increase maxcount

@@ -46,6 +46,7 @@ public class PrintSpiralMatrix {
         ans.add(arr[p][j]);
       }
     }
+    System.out.println();
     print(ans, arr, i + 1, j + 1, m - 1, n - 1);
   }
 

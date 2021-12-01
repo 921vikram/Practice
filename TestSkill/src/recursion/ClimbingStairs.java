@@ -19,9 +19,9 @@ public class ClimbingStairs {
   }
 
   public static void main(String[] args) {
-    result = new int[45];
-    climbStairs(44);
-    System.out.println("ways " + result[44]);
+    result = new int[5];
+    climbStairs(4);
+    System.out.println("ways " + result[4]);
   }
 
 }

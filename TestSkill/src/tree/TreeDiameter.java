@@ -29,7 +29,7 @@ public class TreeDiameter {
     int left = treeDiameter(node.getLeft());
     int right = treeDiameter(node.getRight());
 
-    int tmp = left > right ? left + 1 : right + 1;
+    int tmp = Math.max(left, right) + 1;
     int ans = tmp < left + right + 1 ? left + right + 1 : tmp;
 
     res = res < ans ? ans : res;

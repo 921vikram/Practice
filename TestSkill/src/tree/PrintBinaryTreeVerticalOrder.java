@@ -36,39 +36,33 @@ public class PrintBinaryTreeVerticalOrder {
     }
 
     Map<Integer, List<Integer>> map = new TreeMap<Integer, List<Integer>>();
-
-    int min = 0;
-    int max = 0;
     int hd = 0;
-    findHorizontalDistance(root, min, max, hd, map);
+    findHorizontalDistance(root,hd, map);
 
     for(List<Integer> values : map.values()) {
       System.out.println(values);
     }
-
   }
 
-  private static void findHorizontalDistance(Node root, int min, int max, int hd, Map<Integer, List<Integer>> map) {
-
+  private static void findHorizontalDistance(Node root, int hd, Map<Integer, List<Integer>> map) {
     if(root == null) {
       return;
     }
-
-    if(hd < min) {
-      min = hd;
-    }
-
-    if(hd > max) {
-      max = hd;
-    }
+//    if(hd < min) {
+//      min = hd;
+//    }
+//
+//    if(hd > max) {
+//      max = hd;
+//    }
     /**
      *  HD will capture the left and right movement. Left movement means -1 and right movement means +1
      **/
     map.computeIfAbsent(hd, k -> new ArrayList<Integer>()).add(root.getValue());
 
-    findHorizontalDistance(root.left, min, max, hd -1 , map);
+    findHorizontalDistance(root.left, hd -1 , map);
 
-    findHorizontalDistance(root.right, min, max, hd +1 , map);
+    findHorizontalDistance(root.right, hd +1 , map);
 
   }
 

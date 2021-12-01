@@ -21,8 +21,6 @@ public class WordBreakWithAns {
     wordDict.add("and");
     wordDict.add("sand");
     wordDict.add("dog");
-
-
     //wordDict.add("leet");
     //wordDict.add("code");
     //String s = "leetcode";

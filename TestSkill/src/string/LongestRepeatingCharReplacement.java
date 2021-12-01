@@ -2,7 +2,7 @@ package string;
 
 public class LongestRepeatingCharReplacement {
   public static void main(String args[]) {
-    String s = "ABAB";
+    String s = "ABABCAB";
     int k = 2;
     int res = 0;
     int startWindow = 0;
