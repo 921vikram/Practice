@@ -1,4 +1,4 @@
-
+package test;
 
 
 /**Tracks statistics of stream of values. */
